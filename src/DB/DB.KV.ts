@@ -1,12 +1,16 @@
-import { PoolClient } from "pg";
 import { RedisClient } from "redis";
-import DBError from "../Helpers/ErrorHandling/DBError";
-import { RedisSet, RedisGet, RedisDel } from "../Helpers/Wrapper/Redis";
+import {
+  RedisSet,
+  RedisGet,
+  RedisDel,
+  RedisTruncate,
+} from "../Helpers/Wrapper/Redis";
 
 interface IKVStore {
   Set: (key: string, value: string, expiryTime: number) => Promise<void>;
   Get: (key: string) => Promise<string | null>;
   Delete: (key: string) => Promise<void>;
+  Truncate: () => Promise<void>;
 }
 class KV implements IKVStore {
   conn: RedisClient;
@@ -24,6 +28,9 @@ class KV implements IKVStore {
   }
   Delete(key: string): Promise<void> {
     return RedisDel(this.conn, key);
+  }
+  Truncate(): Promise<void> {
+    return RedisTruncate(this.conn);
   }
 }
 

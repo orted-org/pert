@@ -32,4 +32,13 @@ function RedisDel(client: RedisClient, key: string): Promise<void> {
   });
 }
 
-export { RedisSet, RedisGet, RedisDel };
+function RedisTruncate(client: RedisClient): Promise<void> {
+  return new Promise((resolve, reject) => {
+    client.flushdb((err, reply) => {
+      if (err) return reject(err);
+      return resolve();
+    });
+  });
+}
+
+export { RedisSet, RedisGet, RedisDel, RedisTruncate };
