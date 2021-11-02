@@ -1,5 +1,5 @@
 import { ITodoStore } from "../../DB/DAO.Todo";
-import { generateNewUserID } from "../../Helpers/Auth/Helper.Auth.Factory";
+import NewV4UUID from "../../Helpers/Wrapper/UUID";
 
 function CreateTodo(
   d: ITodoStore,
@@ -7,7 +7,7 @@ function CreateTodo(
 ) {
   return d.Create({
     ...data,
-    id: generateNewUserID(),
+    id: NewV4UUID(),
     status: false,
     updated_at: new Date(),
   });
