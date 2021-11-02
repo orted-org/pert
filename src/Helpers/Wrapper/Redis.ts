@@ -1,20 +1,20 @@
 import { RedisClient } from "redis";
 
-function Set(
+function RedisSet(
   client: RedisClient,
   key: string,
   value: string,
   expiryTime: number
-) {
+): Promise<void> {
   return new Promise((resolve, reject) => {
     client.SET(key, value, "EX", expiryTime, (err, reply) => {
       if (err) return reject(err);
-      resolve(reply);
+      return resolve();
     });
   });
 }
 
-function Get(client: RedisClient, key: string) {
+function RedisGet(client: RedisClient, key: string): Promise<string | null> {
   return new Promise((resolve, reject) => {
     client.GET(key, (err, reply) => {
       if (err) return reject(err);
@@ -23,13 +23,13 @@ function Get(client: RedisClient, key: string) {
   });
 }
 
-function Del(client: RedisClient, key: string) {
+function RedisDel(client: RedisClient, key: string): Promise<void> {
   return new Promise((resolve, reject) => {
     client.DEL(key, (err, reply) => {
       if (err) return reject(err);
-      return resolve(reply);
+      return resolve();
     });
   });
 }
 
-export { Set, Get, Del };
+export { RedisSet, RedisGet, RedisDel };
