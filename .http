@@ -1,0 +1,21 @@
+### MAIN ROUTES
+
+### Create Todo
+POST http://localhost:3000/auth/
+Content-Type: application/json
+
+{
+    "title":"a new todo"
+}
+
+### Get All Todos
+GET http://localhost:3000/auth/
+
+### Delete Todo
+DELETE http://localhost:3000/auth/
+Content-Type: application/json
+
+{
+    "id":"1"
+}
+
