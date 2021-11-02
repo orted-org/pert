@@ -1,16 +1,15 @@
+import { DB } from "../DB/DB.DB";
 import ConnectToDB from "../Helpers/Connectors/ConnectDB";
-import App from "../HTTP/App";
 import { Conf } from "../HTTP/ConfigInit";
-let app: App;
+let db: DB;
 beforeAll(async () => {
   const conf = Conf;
-  const db = await ConnectToDB(conf);
+  db = await ConnectToDB(conf);
   // TODO: Fix for unit testing single components
-  app = new App(db, conf);
 });
 
 afterAll(async () => {
-  app.ShutDown();
+  db.Close();
   console.log("Closed DB Connection");
 });
 
@@ -23,7 +22,7 @@ test("test create todo item", async () => {
       status: false,
       updated_at: new Date(),
     };
-    const i = await app.TodoDAO.Create(arg);
+    const i = await db.Todo.Create(arg);
 
     expect(i.id).toBe(arg.id);
     expect(i.title).toBe(arg.title);

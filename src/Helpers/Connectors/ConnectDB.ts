@@ -1,5 +1,5 @@
 import { Pool } from "pg";
-import { DB } from "../../DB/DB.Engine";
+import { DB } from "../../DB/DB.DB";
 import { IConf } from "../../HTTP/ConfigInit";
 
 function ConnectToDB(conf: IConf): Promise<DB> {

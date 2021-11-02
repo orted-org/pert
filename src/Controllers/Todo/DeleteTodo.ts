@@ -2,7 +2,7 @@ import DeleteTodo from "../../Services/Todo/DeleteTodo";
 import RouteHandler from "../../TI/RouteHandlerType";
 
 const HandleDeleteTodo: RouteHandler = (req, res, next, app) => {
-  DeleteTodo(app.TodoDAO, { id: req.body.id })
+  DeleteTodo(app.db.Todo, { id: req.body.id })
     .then(() => {
       app.SendRes(res, 200, undefined, "todo deleted");
     })

@@ -2,7 +2,7 @@ import CreateTodo from "../../Services/Todo/CreateTodo";
 import RouteHandler from "../../TI/RouteHandlerType";
 
 const HandleCreateTodo: RouteHandler = (req, res, next, app) => {
-  CreateTodo(app.TodoDAO, {
+  CreateTodo(app.db.Todo, {
     title: req.body.title,
     description: req.body.description,
   })

@@ -1,7 +1,7 @@
 ### MAIN ROUTES
 
 ### Create Todo
-POST http://localhost:3000/auth/
+POST http://localhost:3000/todo/
 Content-Type: application/json
 
 {
@@ -9,10 +9,10 @@ Content-Type: application/json
 }
 
 ### Get All Todos
-GET http://localhost:3000/auth/
+GET http://localhost:3000/todo/
 
 ### Delete Todo
-DELETE http://localhost:3000/auth/
+DELETE http://localhost:3000/todo/
 Content-Type: application/json
 
 {
