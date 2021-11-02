@@ -4,16 +4,20 @@ import { DB } from "../DB/DB.Engine";
 import { Express } from "express";
 import { NextFunction, Response, Request } from "express";
 import { IConf } from "./ConfigInit";
+import { KV } from "../DB/DB.KV";
 
 class App {
   private DB: DB;
   Srv?: Express;
   TodoDAO: ITodoStore;
   Conf: IConf;
-  constructor(db: DB, conf: IConf, srv?: Express) {
+  KV: KV;
+  constructor(db: DB, conf: IConf, kv: KV, srv?: Express) {
     this.DB = db;
     this.Srv = srv;
     this.Conf = conf;
+    this.KV = kv;
+
     this.TodoDAO = new TodoDAO(this.DB);
   }
   InHandler(handler: RouteHandler) {
