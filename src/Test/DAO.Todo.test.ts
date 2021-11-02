@@ -5,6 +5,7 @@ let app: App;
 beforeAll(async () => {
   const conf = Conf;
   const db = await ConnectToDB(conf);
+  // TODO: Fix for unit testing single components
   app = new App(db, conf);
 });
 
