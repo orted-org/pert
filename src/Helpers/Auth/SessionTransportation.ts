@@ -1,6 +1,6 @@
 import { SESSION_DURATION } from "./Helper.Auth.DurationHandler";
 import ENV from "../Config/env";
-import { makeError } from "../ErrorHandling/Helper.EH.MakeError";
+import { makeError } from "../ErrorHandling/MakeError";
 import { Request, Response } from "express";
 
 function sendSession(res: Response, sessionId: string) {

@@ -1,4 +1,4 @@
-import ConnectToDB from "../Helpers/Helper.DBInit";
+import ConnectToDB from "../Helpers/Connectors/ConnectDB";
 import App from "../HTTP/App";
 import { Conf } from "../HTTP/ConfigInit";
 let app: App;

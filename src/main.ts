@@ -1,7 +1,7 @@
 import { ServerInit } from "./HTTP/ServerInit";
 import SinkErrorFor from "./HTTP/ErrorSinkInit";
 import HandleRoutesFor from "./HTTP/RoutersInit";
-import ConnectToDB from "./Helpers/Helper.DBInit";
+import ConnectToDB from "./Helpers/Connectors/ConnectDB";
 import App from "./HTTP/App";
 import { Conf } from "./HTTP/ConfigInit";
 

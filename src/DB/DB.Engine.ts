@@ -1,5 +1,5 @@
 import { PoolClient } from "pg";
-import DBError from "../Helpers/ErrorHandling/Helper.EH.DBError";
+import DBError from "../Helpers/ErrorHandling/DBError";
 
 interface IDB {
   Exec: (query: string, arg: any[]) => Promise<void>;

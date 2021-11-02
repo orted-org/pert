@@ -30,11 +30,15 @@ interface IConf {
     serverPort: number;
   };
   connectivity: {
+    redisPort: number;
+    redisUri: string;
     postgresHost: string;
     postgresPort: number;
     postgresUser: string;
     postgresDB: string;
     postgresPassword: string;
+    postgresReconnectRetries: number;
+    redisReconnectRetries: number;
   };
 }
 const Conf: IConf = {
@@ -44,11 +48,15 @@ const Conf: IConf = {
     serverPort: getConf("SERVER_PORT")?.getNumber() || 3000,
   },
   connectivity: {
+    redisPort: getConf("REDIS_PORT")?.getNumber() || 6379,
+    redisUri: getConf("REDIS_URI")?.getString() || "redis",
     postgresHost: getConf("POSTGRES_HOST")?.getString() || "localhost",
     postgresPort: getConf("POSTGRES_PORT")?.getNumber() || 5432,
     postgresUser: getConf("POSTGRES_USER")?.getString() || "hs",
     postgresDB: getConf("POSTGRES_DB")?.getString() || "todo_db",
     postgresPassword: getConf("POSTGRES_PASSWORD")?.getString() || "mypassword",
+    postgresReconnectRetries: getConf("POSTGRES_RETRIES")?.getNumber() || 3,
+    redisReconnectRetries: getConf("POSTGRES_RETRIES")?.getNumber() || 3,
   },
 };
 

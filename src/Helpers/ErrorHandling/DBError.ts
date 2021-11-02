@@ -1,4 +1,4 @@
-import { makeError } from "./Helper.EH.MakeError";
+import { makeError } from "./MakeError";
 
 function DBError(err: any) {
   switch (err.code) {

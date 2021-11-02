@@ -1,7 +1,7 @@
 import {
   makeError,
   coatError,
-} from "../Helpers/ErrorHandling/Helper.EH.MakeError";
+} from "../Helpers/ErrorHandling/MakeError";
 import App from "./App";
 function SinkErrorFor(app: App) {
   if (!app.Srv) return;

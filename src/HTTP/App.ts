@@ -16,9 +16,6 @@ class App {
     this.Conf = conf;
     this.TodoDAO = new TodoDAO(this.DB);
   }
-  GetConf(): IConf {
-    return this.Conf;
-  }
   InHandler(handler: RouteHandler) {
     return (req: Request, res: Response, next: NextFunction) => {
       return handler(req, res, next, this);
