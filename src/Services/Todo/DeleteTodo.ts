@@ -1,7 +1,7 @@
 import { ITodoStore } from "../../DB/DAO.Todo";
 
-function DeleteTodo(s: ITodoStore, data: { id: string }) {
-  return s.Delete(data.id);
+function DeleteTodo(s: ITodoStore, id: string) {
+  return s.Delete(id);
 }
 
 export default DeleteTodo;

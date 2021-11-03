@@ -2,13 +2,12 @@ import { ITodoStore } from "../../DB/DAO.Todo";
 import NewV4UUID from "../../Helpers/Wrapper/UUID";
 
 function CreateTodo(
-  d: ITodoStore,
+  s: ITodoStore,
   data: { title: string; description: string | null }
 ) {
-  return d.Create({
+  return s.Create({
     ...data,
     id: NewV4UUID(),
-    status: false,
     updated_at: new Date(),
   });
 }

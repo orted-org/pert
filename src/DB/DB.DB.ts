@@ -6,6 +6,7 @@ interface IDB {
   Exec: (query: string, arg: any[]) => Promise<void>;
   QueryRow: <T>(query: string, arg: any[]) => Promise<T>;
   Query: <T>(query: string, arg: any[]) => Promise<T[]>;
+  Todo: ITodoStore;
 }
 class DB implements IDB {
   private conn: PoolClient;

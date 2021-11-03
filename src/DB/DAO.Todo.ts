@@ -10,13 +10,15 @@ const _query = {
 
 // interface of the DAO
 interface ITodoStore {
-  Create: (teamData: ICreateTodoParams) => Promise<MTodo>;
+  Create: (data: {
+    id: string;
+    title: string;
+    description: string | null;
+    updated_at: Date;
+  }) => Promise<MTodo>;
   GetAll: () => Promise<MTodo[]>;
   Delete: (id: string) => Promise<void>;
 }
-
-// interface for input and output
-interface ICreateTodoParams extends MTodo {}
 
 // DAO definition
 class TodoDAO implements ITodoStore {
@@ -24,13 +26,17 @@ class TodoDAO implements ITodoStore {
   constructor(db: DB) {
     this.db = db;
   }
-  Create(teamData: ICreateTodoParams): Promise<MTodo> {
+  Create(data: {
+    id: string;
+    title: string;
+    description: string | null;
+    updated_at: Date;
+  }): Promise<MTodo> {
     return this.db.QueryRow<MTodo>(_query.Create, [
-      teamData.id,
-      teamData.title,
-      teamData.description,
-      teamData.status,
-      teamData.updated_at,
+      data.id,
+      data.title,
+      data.description,
+      data.updated_at,
     ]);
   }
   GetAll(): Promise<MTodo[]> {
