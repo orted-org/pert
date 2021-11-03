@@ -7,14 +7,14 @@ import { KV } from "../DB/DB.KV";
 
 class App {
   db: DB;
-  Srv?: Express;
-  Conf: IConf;
-  KV: KV;
+  srv?: Express;
+  conf: IConf;
+  kv: KV;
   constructor(db: DB, conf: IConf, kv: KV, srv?: Express) {
     this.db = db;
-    this.Srv = srv;
-    this.Conf = conf;
-    this.KV = kv;
+    this.srv = srv;
+    this.conf = conf;
+    this.kv = kv;
   }
   InHandler(handler: RouteHandler) {
     return (req: Request, res: Response, next: NextFunction) => {

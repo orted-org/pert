@@ -22,9 +22,9 @@ async function Init() {
 //Listening
 Init()
   .then((app) => {
-    if (app.Srv)
-      app.Srv.listen(app.Conf.primaryInfo.serverPort, () => {
-        console.log(`Node app running at ${app.Conf.primaryInfo.serverPort}`);
+    if (app.srv)
+      app.srv.listen(app.conf.primaryInfo.serverPort, () => {
+        console.log(`Node app running at ${app.conf.primaryInfo.serverPort}`);
       });
   })
   .catch((err) => {
