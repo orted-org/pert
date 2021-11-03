@@ -10,10 +10,10 @@ async function Init() {
   const conf = Conf;
   const srv = ServerInit(conf);
   const db = await ConnectToDB(conf);
-  const kv = await ConnectToRedis(conf);
+  // const kv = await ConnectToRedis(conf);
 
   // initialize new app
-  const app = new App(db, conf, kv, srv);
+  const app = new App(db, conf, srv);
   HandleRoutesFor(app);
   SinkErrorFor(app);
   return app;

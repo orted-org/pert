@@ -9,12 +9,12 @@ class App {
   db: DB;
   srv?: Express;
   conf: IConf;
-  kv: KV;
-  constructor(db: DB, conf: IConf, kv: KV, srv?: Express) {
+  // kv: KV;
+  constructor(db: DB, conf: IConf, srv?: Express) {
     this.db = db;
     this.srv = srv;
     this.conf = conf;
-    this.kv = kv;
+    // this.kv = kv;
   }
   InHandler(handler: RouteHandler) {
     return (req: Request, res: Response, next: NextFunction) => {
