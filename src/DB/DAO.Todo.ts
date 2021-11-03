@@ -3,7 +3,7 @@ import { MTodo } from "./DB.Models";
 
 // all the queries
 const _query = {
-  Create: `INSERT INTO todo (id, title, description, status, updated_at) VALUES ($1, $2, $3, $4, $5) RETURNING id, title, description, status, updated_at`,
+  Create: `INSERT INTO todo (id, title, description, updated_at) VALUES ($1, $2, $3, $4) RETURNING id, title, description, status, updated_at`,
   GetAll: `SELECT id, title, description, status, updated_at FROM todo`,
   Delete: `DELETE FROM todo WHERE id=$1`,
 };

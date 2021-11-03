@@ -4,5 +4,5 @@ CREATE TABLE IF NOT EXISTS todo (
     title TEXT NOT NULL,
     description TEXT,
     status BOOLEAN DEFAULT false,
-    NOT NULL updated_at TIMESTAMP DEFAULT NOW()
+    updated_at TIMESTAMP DEFAULT NOW()
 );
