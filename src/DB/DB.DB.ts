@@ -1,13 +1,14 @@
 import { PoolClient } from "pg";
-import DBError from "../Helpers/ErrorHandling/DBError";
 import { ITodoStore, TodoDAO } from "./DAO.Todo";
 
 interface IDB {
   Exec: (query: string, arg: any[]) => Promise<void>;
   QueryRow: <T>(query: string, arg: any[]) => Promise<T>;
   Query: <T>(query: string, arg: any[]) => Promise<T[]>;
+  Close: () => void;
   Todo: ITodoStore;
 }
+
 class DB implements IDB {
   private conn: PoolClient;
   Todo: ITodoStore = new TodoDAO(this);
@@ -49,4 +50,4 @@ class DB implements IDB {
   }
 }
 
-export { DB };
+export { DB, IDB };

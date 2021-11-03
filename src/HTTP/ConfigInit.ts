@@ -30,6 +30,7 @@ interface IConf {
     serverPort: number;
   };
   connectivity: {
+    reactUrl: string;
     redisPort: number;
     redisUri: string;
     postgresHost: string;
@@ -48,6 +49,7 @@ const Conf: IConf = {
     serverPort: getConf("SERVER_PORT")?.getNumber() || 3000,
   },
   connectivity: {
+    reactUrl: getConf("REACT_URL")?.getString() || "http://localhost:3000",
     redisPort: getConf("REDIS_PORT")?.getNumber() || 6379,
     redisUri: getConf("REDIS_URI")?.getString() || "redis",
     postgresHost: getConf("POSTGRES_HOST")?.getString() || "localhost",

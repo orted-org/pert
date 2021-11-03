@@ -1,16 +1,16 @@
 import { NextFunction, Response, Request } from "express";
 import RouteHandler from "../TI/RouteHandlerType";
-import { DB } from "../DB/DB.DB";
+import {  IDB } from "../DB/DB.DB";
 import { Express } from "express";
 import { IConf } from "./ConfigInit";
 import { KV } from "../DB/DB.KV";
 
 class App {
-  db: DB;
+  db: IDB;
   srv?: Express;
   conf: IConf;
   // kv: KV;
-  constructor(db: DB, conf: IConf, srv?: Express) {
+  constructor(db: IDB, conf: IConf, srv?: Express) {
     this.db = db;
     this.srv = srv;
     this.conf = conf;
