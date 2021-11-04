@@ -5,15 +5,17 @@ import ConnectToDB from "./Helpers/Connectors/ConnectDB";
 import App from "./HTTP/App";
 import { Conf } from "./HTTP/ConfigInit";
 import ConnectToRedis from "./Helpers/Connectors/ConnectRedis";
+import { InMKV } from "./Helpers/InMemoryKV";
 
 async function Init() {
   const conf = Conf;
   const srv = ServerInit(conf);
   const db = await ConnectToDB(conf);
   // const kv = await ConnectToRedis(conf);
+  const kv = new InMKV();
 
   // initialize new app
-  const app = new App(db, conf, srv);
+  const app = new App(conf, db, kv, srv);
   HandleRoutesFor(app);
   SinkErrorFor(app);
   return app;
@@ -22,10 +24,9 @@ async function Init() {
 //Listening
 Init()
   .then((app) => {
-    if (app.srv)
-      app.srv.listen(app.conf.primaryInfo.serverPort, () => {
-        console.log(`Node app running at ${app.conf.primaryInfo.serverPort}`);
-      });
+    app.srv.listen(app.conf.primaryInfo.serverPort, () => {
+      console.log(`Node app running at ${app.conf.primaryInfo.serverPort}`);
+    });
   })
   .catch((err) => {
     console.log(err);

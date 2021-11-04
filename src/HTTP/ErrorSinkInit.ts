@@ -1,8 +1,6 @@
 import { makeError, coatError } from "../Helpers/ErrorHandling/MakeError";
 import App from "./App";
 function SinkErrorFor(app: App) {
-  if (!app.srv) return;
-
   app.srv.use((req, res, next) => {
     next(new makeError.NotFound());
   });

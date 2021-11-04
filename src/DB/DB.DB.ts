@@ -1,7 +1,7 @@
 import { PoolClient } from "pg";
 import { ITodoStore, TodoDAO } from "./DAO.Todo";
 
-interface IDB {
+interface IDBStore {
   Exec: (query: string, arg: any[]) => Promise<void>;
   QueryRow: <T>(query: string, arg: any[]) => Promise<T>;
   Query: <T>(query: string, arg: any[]) => Promise<T[]>;
@@ -9,7 +9,7 @@ interface IDB {
   Todo: ITodoStore;
 }
 
-class DB implements IDB {
+class DB implements IDBStore {
   private conn: PoolClient;
   Todo: ITodoStore = new TodoDAO(this);
   constructor(conn: PoolClient) {
@@ -50,4 +50,4 @@ class DB implements IDB {
   }
 }
 
-export { DB, IDB };
+export { DB, IDBStore };

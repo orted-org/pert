@@ -13,6 +13,6 @@ function TodoRoutes(app: App): Router {
 }
 
 function HandleRoutesFor(app: App) {
-  if (app.srv) app.srv.use("/todo", TodoRoutes(app));
+  app.srv.use("/todo", TodoRoutes(app));
 }
 export default HandleRoutesFor;

@@ -1,20 +1,20 @@
 import { NextFunction, Response, Request } from "express";
 import RouteHandler from "../TI/RouteHandlerType";
-import {  IDB } from "../DB/DB.DB";
+import { IDBStore } from "../DB/DB.DB";
 import { Express } from "express";
 import { IConf } from "./ConfigInit";
-import { KV } from "../DB/DB.KV";
+import { KV, IKVStore } from "../DB/DB.KV";
 
 class App {
-  db: IDB;
-  srv?: Express;
+  db: IDBStore;
+  srv: Express;
   conf: IConf;
-  // kv: KV;
-  constructor(db: IDB, conf: IConf, srv?: Express) {
+  kv: IKVStore;
+  constructor(conf: IConf, db: IDBStore, kv: IKVStore, srv: Express) {
     this.db = db;
     this.srv = srv;
     this.conf = conf;
-    // this.kv = kv;
+    this.kv = kv;
   }
   InHandler(handler: RouteHandler) {
     return (req: Request, res: Response, next: NextFunction) => {
