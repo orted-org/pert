@@ -35,4 +35,4 @@ class InMKV implements IKVStore {
   Close() {}
 }
 
-export { InMKV };
+export default InMKV;

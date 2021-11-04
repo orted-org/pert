@@ -41,4 +41,4 @@ function ServerInit(conf: IConf): Express {
   return srv;
 }
 
-export { ServerInit };
+export default ServerInit;

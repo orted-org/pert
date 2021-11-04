@@ -1,11 +1,11 @@
-import { ServerInit } from "./HTTP/ServerInit";
+import ServerInit from "./HTTP/ServerInit";
 import SinkErrorFor from "./HTTP/ErrorSinkInit";
 import HandleRoutesFor from "./HTTP/RoutersInit";
 import ConnectToDB from "./Helpers/Connectors/ConnectDB";
 import App from "./HTTP/App";
 import { Conf } from "./HTTP/ConfigInit";
 import ConnectToRedis from "./Helpers/Connectors/ConnectRedis";
-import { InMKV } from "./Helpers/InMemoryKV";
+import InMKV from "./Helpers/InMemoryKV";
 
 async function Init() {
   const conf = Conf;
