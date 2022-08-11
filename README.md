@@ -4,7 +4,6 @@
 
 Must have docker installed and running on the system for the following instructions:
 
-
 #### Change file permission (if not already changed)
 
 ```bash
