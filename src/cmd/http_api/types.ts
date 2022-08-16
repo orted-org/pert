@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { NextFunction, Response, Request } from "express";
 import { Express } from "express";
 import TodoManager from "../../internal/todo_manager/todo_manager";
+import { ToJson } from "../../util/json";
 
 type RouteHandler = (
   req: Request,
@@ -32,7 +33,9 @@ export class App {
       message?: string;
     }
   ) {
-    res.status(resData.status).send({ resData, is_error: false });
+    res
+      .status(resData.status)
+      .send(ToJson({ data: resData.data, is_error: false }));
   }
   ShutDown() {}
 }
