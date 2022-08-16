@@ -18,18 +18,15 @@ migratedown:
 	migrate -path db/migrations -database "postgresql://root:mypassword@localhost:5432/node_app_db?sslmode=disable" -verbose down
 
 redis:
-	docker rm -f auth_redis
-	docker run --name auth_redis -p 6379:6379 -d redis
+	docker rm -f node_redis
+	docker run --name node_redis -p 6379:6379 -d redis
 
 dbreset:
 	make migratedown
 	make migrateup
-
-err:
-	go run cmd/error_exporter/*.go
-
 pmu:
-	pwd
 	npx prisma migrate dev -n init --schema ./src/infra/db/schema.prisma
+pgen:
+	npx prisma generate --schema ./src/infra/db/schema.prisma
 
 .PHONY: postgres createdb dropdb migrateup migratedown sqlc test migratecreate seed genprivatekey genpublickey err test_fail
