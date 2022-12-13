@@ -1,0 +1,9 @@
+node_modules/
+.vscode/
+.env
+.DS_Store
+firebaseAuthCredentials.json
+pgdata
+.idea/
+package-lock.json
+logs/

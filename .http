@@ -1,0 +1,23 @@
+### MAIN ROUTES
+
+### Create Todo
+POST http://localhost:8080/todo/
+Content-Type: application/json
+
+{
+    "title":"Hello"
+}
+
+### Get All Todos
+GET http://localhost:8080/todo
+
+
+### Update Todo
+PUT http://localhost:8080/todo/
+Content-Type: application/json
+
+{
+    "id":8,
+    "title":"Latest news!",
+    "description":"maybe not so good news"
+}

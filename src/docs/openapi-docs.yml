@@ -1,0 +1,39 @@
+info:
+  version: 1.0.0
+  title: My API
+  description: This is the API
+servers:
+  - url: v1
+openapi: 3.0.0
+components:
+  schemas:
+    Todo:
+      $ref: "#/components/schemas/Todo"
+  parameters: {}
+paths:
+  /todo/:
+    post:
+      summary: creates new todo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                body:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      minLength: 3
+                    description:
+                      type: string
+                  required:
+                    - title
+                    - description
+              required:
+                - body
+      responses:
+        "201":
+          description: todo created
