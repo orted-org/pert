@@ -8,32 +8,72 @@ openapi: 3.0.0
 components:
   schemas:
     Todo:
-      $ref: "#/components/schemas/Todo"
+      type: object
+      properties:
+        body:
+          type: object
+          properties:
+            title:
+              type: string
+              minLength: 3
+          required:
+            - title
+      required:
+        - body
+    UpdateTodo:
+      type: object
+      properties:
+        body:
+          type: object
+          properties:
+            id:
+              type: number
+            title:
+              type: string
+              minLength: 3
+            description:
+              type: string
+            is_completed:
+              type: boolean
+            are_you_sure:
+              type: boolean
+          required:
+            - id
+            - are_you_sure
+      required:
+        - body
   parameters: {}
 paths:
   /todo/:
     post:
-      summary: creates new todo
+      summary: Creates a todo
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                body:
-                  type: object
-                  properties:
-                    title:
-                      type: string
-                      minLength: 3
-                    description:
-                      type: string
-                  required:
-                    - title
-                    - description
-              required:
-                - body
+              $ref: "#/components/schemas/Todo"
       responses:
-        "201":
-          description: todo created
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo"
+        "401":
+          description: Validation Error
+    put:
+      summary: Updates a todo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateTodo"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateTodo"
