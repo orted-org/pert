@@ -3,6 +3,7 @@ import InMKV from "../pkg/kv_store/kv_store_";
 import { IKVStore } from "../pkg/kv_store/kv_store";
 import { createClient, RedisClientType } from "redis";
 import Redis from "../pkg/kv_store/redis";
+import { Logger } from "../util/logger";
 let kv: IKVStore;
 beforeAll(async () => {
   kv = new InMKV();
@@ -10,7 +11,7 @@ beforeAll(async () => {
 
 afterAll(async () => {
   kv.Close();
-  console.log("Closed KV DB Connection");
+  console.log("closed kv db connection");
 });
 
 async function setRandomItem() {

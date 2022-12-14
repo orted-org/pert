@@ -4,6 +4,7 @@ import { IFileStorage } from "../../pkg/file_storage/file_storage";
 import { LocalFileStorage } from "../../pkg/file_storage/local_file_storage";
 import { S3FileStorage } from "../../pkg/file_storage/s3_file_storage";
 import { ImageResolver } from "../../pkg/image_resolver/image_resolver_";
+import { Logger } from "../../util/logger";
 
 export interface IAPIDependencies {
   db: PrismaClient;
@@ -20,7 +21,7 @@ export async function InitiateDependencies(): Promise<IAPIDependencies> {
     let i = 0;
     try {
       await client.$connect();
-      console.log("connected to db...");
+      Logger.info("connected to db...");
     } catch (err) {
       return reject(err);
     }
