@@ -1,6 +1,10 @@
 import { NullValidator } from "../app/constant";
 import { CreateController } from "../app/factory";
-import { validateCreateTodo, validateUpdateTodo } from "./validation";
+import {
+  validateCreateTodo,
+  validateDeleteTodo,
+  validateUpdateTodo,
+} from "./validation";
 
 export const HandleGetTodo = CreateController({
   validate: NullValidator,
@@ -51,6 +55,20 @@ export const HandleUpdateTodo = CreateController({
       .Update(body.id, body.title, body.description, body.is_completed)
       .then((todo) => {
         app.SendRes(res, { status: 200, data: todo });
+      })
+      .catch((err) => {
+        next(err);
+      });
+  },
+});
+
+export const HandleDeleteTodo = CreateController({
+  validate: validateDeleteTodo,
+  handle: (req, res, next, app) => {
+    app.deps.todoManager
+      .DeleteById(req.vi.query.id)
+      .then(() => {
+        app.SendRes(res, { status: 200 });
       })
       .catch((err) => {
         next(err);
