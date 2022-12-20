@@ -10,5 +10,14 @@ export const validateUpdateTodo = z.object({
     title: z.string().min(3, "Title too small.").optional(),
     description: z.string().optional(),
     is_completed: z.boolean().optional(),
+    are_you_sure: z.boolean(),
+  }),
+});
+
+export const validateDeleteTodo = z.object({
+  query: z.object({
+    id: z.string().transform((s) => {
+      return Number(s);
+    }),
   }),
 });

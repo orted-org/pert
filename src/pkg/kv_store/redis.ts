@@ -15,7 +15,6 @@ class Redis implements IKVStore {
           return resolve();
         })
         .catch((err) => {
-          console.log(err);
           return reject(err);
         });
     });

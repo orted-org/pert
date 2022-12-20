@@ -8,7 +8,7 @@ beforeAll(async () => {
 
 afterAll(async () => {
   kv.Close();
-  console.log("Closed KV DB Connection");
+  console.log("closed kv db connection");
 });
 
 async function setRandomItem() {

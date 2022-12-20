@@ -7,5 +7,5 @@ apiApp
     apiApp.Listen();
   })
   .catch((err) => {
-    console.log(err);
+    console.error(`error listening on port ${apiApp.config.port}`, err);
   });

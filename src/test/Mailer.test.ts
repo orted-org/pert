@@ -1,5 +1,6 @@
 import { Mailer } from "../pkg/mailer/mailer";
 import { NodeMailer } from "../pkg/mailer/node_mailer";
+import { Logger } from "../util/logger";
 let mailer: Mailer;
 beforeAll(async () => {
   mailer = new NodeMailer(
@@ -12,7 +13,7 @@ beforeAll(async () => {
 
 afterAll(async () => {
   if (mailer != undefined) mailer.Close();
-  console.log("Mailer closed");
+  console.log("mailer closed");
 });
 
 test("test mailer send", async () => {
