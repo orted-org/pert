@@ -15,7 +15,7 @@ pathsToImport.forEach((path) => {
       a.default();
       WriteYamlDocumentation();
     })
-    .catch((err) => {
+    .catch(() => {
       console.log(`did not find any module ${path}, skipping...`);
     });
 });

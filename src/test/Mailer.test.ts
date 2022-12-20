@@ -1,6 +1,5 @@
 import { Mailer } from "../pkg/mailer/mailer";
 import { NodeMailer } from "../pkg/mailer/node_mailer";
-import { Logger } from "../util/logger";
 let mailer: Mailer;
 beforeAll(async () => {
   mailer = new NodeMailer(
