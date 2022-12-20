@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import cors from "cors";
-import express, { NextFunction, Request, Response, Router } from "express";
-import { AnyZodObject, z } from "zod";
+import express, { Response, Router } from "express";
 import { Herror } from "../../../pkg/herror/herror";
 import { HerrorStatus } from "../../../pkg/herror/status_codes";
 import { ToJson } from "../../../util/json";
@@ -51,7 +51,7 @@ export class ApiApp {
     srv.use(express.urlencoded({ extended: true }));
 
     // routes
-    for (let route in ApiRoutes) {
+    for (const route in ApiRoutes) {
       srv.use(route, ApiRoutes[route](this));
     }
 
@@ -60,7 +60,7 @@ export class ApiApp {
       next(new Herror("not found", HerrorStatus.StatusNotFound));
     });
 
-    srv.use((err: any, req: any, res: any, next: any) => {
+    srv.use((err: any, req: any, res: any) => {
       const status = err.status || err.responseStatus.statusCode || 500;
       const message = err.message || err.responseStatus.message || "error";
       res.status(status);

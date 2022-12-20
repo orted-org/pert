@@ -1,6 +1,6 @@
 {
-  "name": "",
-  "version": "1.0.0",
+  "name": "pert",
+  "version": "1",
   "description": "",
   "main": "src/app.ts",
   "scripts": {
@@ -9,8 +9,9 @@
     "docs": "nodemon src/cmd/api_doc_gen/main.ts",
     "build": "tsc -p .",
     "test": "jest",
-    "testi": "jest --detectOpenHandles",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "keywords": [],
   "author": "Himanshu Sah",
@@ -61,6 +62,9 @@
     "@types/redis": "^4.0.11",
     "@types/sharp": "^0.31.0",
     "@types/uuid": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "^5.47.0",
+    "@typescript-eslint/parser": "^5.47.0",
+    "eslint": "^8.30.0",
     "husky": "^8.0.2",
     "jest": "^29.3.1",
     "nodemon": "^2.0.19",
@@ -68,6 +72,7 @@
     "prisma": "^4.2.1",
     "ts-jest": "^29.0.3",
     "ts-node": "^10.9.1",
-    "typescript": "^4.7.4"
-  }
+    "typescript": ">=4.4"
+  },
+  "repository": "https://github.com/orted-org/pert.git"
 }

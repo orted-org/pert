@@ -14,23 +14,28 @@ export interface IAPIDependencies {
 }
 
 export async function InitiateDependencies(): Promise<IAPIDependencies> {
-  return new Promise(async (resolve, reject) => {
+  return new Promise((resolve, reject) => {
     // DB
     const client = new PrismaClient();
-    let i = 0;
     try {
-      await client.$connect();
-      console.log("connected to db...");
+      client
+        .$connect()
+        .then(() => {
+          console.log("connected to db...");
+        })
+        .catch((err) => {
+          return reject(err);
+        });
     } catch (err) {
       return reject(err);
     }
 
     //S3
     const s3 = new S3FileStorage(
-      (process.env as any).S3_BUCKET,
-      (process.env as any).ACCESS_KEY_ID,
-      (process.env as any).ACCESS_KEY_SECRET,
-      (process.env as any).S3_REGION
+      process.env.S3_BUCKET || "",
+      process.env.ACCESS_KEY_ID || "",
+      process.env.ACCESS_KEY_SECRET || "",
+      process.env.S3_REGION || ""
     );
 
     // imageResolver
@@ -54,6 +59,6 @@ export async function InitiateDependencies(): Promise<IAPIDependencies> {
   });
 }
 
-async function ShutdownDependencies(): Promise<void> {
-  return new Promise((resolve, reject) => {});
-}
+// async function ShutdownDependencies(): Promise<void> {
+//   return new Promise((resolve, reject) => {});
+// }

@@ -5,7 +5,7 @@ import { createClient, RedisClientType } from "redis";
 let kv: IKVStore;
 beforeAll(async () => {
   const store: RedisClientType = createClient({
-    url: `redis://localhost:6379`,
+    url: "redis://localhost:6379",
   });
   await store.connect();
   kv = new Redis(store);
@@ -17,17 +17,12 @@ afterAll(async () => {
 });
 
 async function setRandomItem() {
-  try {
-    const arg = {
-      key: RandomString(10),
-      value: RandomString(15),
-    };
-    const i = await kv.Set(arg.key, arg.value, 20);
-
-    return arg;
-  } catch (err) {
-    throw err;
-  }
+  const arg = {
+    key: RandomString(10),
+    value: RandomString(15),
+  };
+  await kv.Set(arg.key, arg.value, 20);
+  return arg;
 }
 
 test("test set kv pair", async () => {

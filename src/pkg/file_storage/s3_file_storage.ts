@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { IFileStorage } from "./file_storage";
-import { readFile, writeFile, unlink, access } from "fs";
 import { S3, Credentials } from "aws-sdk";
 
 export class S3FileStorage implements IFileStorage {
@@ -55,7 +55,7 @@ export class S3FileStorage implements IFileStorage {
     return new Promise((resolve, reject) => {
       this.s3Client.deleteObject(
         { Bucket: bucket || this.defaultBucket, Key: filePath },
-        (err, data) => {
+        (err) => {
           if (err !== null) {
             return reject(err);
           }
@@ -65,10 +65,10 @@ export class S3FileStorage implements IFileStorage {
     });
   }
   IfFileExists(filePath: string, bucket?: string): Promise<boolean> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       this.s3Client.headObject(
         { Bucket: bucket || this.defaultBucket, Key: filePath },
-        (err, data) => {
+        (err) => {
           if (err !== null) return resolve(false);
           return resolve(true);
         }

@@ -5,14 +5,14 @@ class InMKV implements IKVStore {
   constructor() {
     this.store = new Map<string, string | null>();
   }
-  Set(key: string, value: string, expiryTime?: number): Promise<void> {
-    return new Promise((resolve, reject) => {
+  Set(key: string, value: string): Promise<void> {
+    return new Promise((resolve) => {
       this.store.set(key, value);
       return resolve();
     });
   }
   Get(key: string): Promise<string | null> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       const v = this.store.get(key);
       if (v) {
         return resolve(v);
@@ -21,19 +21,19 @@ class InMKV implements IKVStore {
     });
   }
   Delete(key: string): Promise<void> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       this.store.delete(key);
       return resolve();
     });
   }
   Truncate(): Promise<void> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       this.store = new Map<string, string | null>();
       return resolve();
     });
   }
   Close(): Promise<void> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       return resolve();
     });
   }

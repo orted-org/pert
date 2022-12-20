@@ -2,19 +2,19 @@ import { IFileStorage } from "../pkg/file_storage/file_storage";
 import { LocalFileStorage } from "../pkg/file_storage/local_file_storage";
 import { S3FileStorage } from "../pkg/file_storage/s3_file_storage";
 import { RandomString } from "../util/random";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 require("dotenv").config();
 
 let fileStorage: IFileStorage;
 beforeAll(async () => {
   fileStorage = new S3FileStorage(
-    (process.env as any).S3_BUCKET,
-    (process.env as any).ACCESS_KEY_ID,
-    (process.env as any).ACCESS_KEY_SECRET,
-    (process.env as any).S3_REGION
+    process.env.S3_BUCKET || "",
+    process.env.ACCESS_KEY_ID || "",
+    process.env.ACCESS_KEY_SECRET || "",
+    process.env.S3_REGION || ""
   );
 });
 
-afterAll(async () => {});
 jest.setTimeout(20000);
 test("test all do", async () => {
   try {

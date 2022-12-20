@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createLogger, transports, Logger as WLogger, format } from "winston";
 import path from "path";
 import fs from "fs";

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { HerrorStatus } from "./status_codes";
 
 export class Herror {

@@ -30,26 +30,17 @@ export default class TodoManager {
     description?: string,
     is_completed?: bool
   ): Promise<ETodo> {
-    try {
-      return this.store.todos.update({
-        where: { id },
-        data: {
-          title,
-          description,
-          is_completed,
-        },
-      });
-    } catch (err) {
-      throw err;
-    }
+    return this.store.todos.update({
+      where: { id },
+      data: {
+        title,
+        description,
+        is_completed,
+      },
+    });
   }
 
   async DeleteById(id: number) {
-    try {
-      await this.store.todos.delete({ where: { id } });
-      return;
-    } catch (err) {
-      throw err;
-    }
+    await this.store.todos.delete({ where: { id } });
   }
 }

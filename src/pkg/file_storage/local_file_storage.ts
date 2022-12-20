@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { IFileStorage } from "./file_storage";
 import { readFile, writeFile, unlink, access } from "fs";
 export class LocalFileStorage implements IFileStorage {
@@ -26,7 +27,7 @@ export class LocalFileStorage implements IFileStorage {
     });
   }
   IfFileExists(filePath: string): Promise<boolean> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       access(filePath, (err) => {
         if (err) return resolve(false);
         resolve(true);

@@ -1,9 +1,5 @@
 import { z } from "zod";
 
-const v = z.object({
-  title: z.string().min(3, "Title too small"),
-});
-
 export const validateCreateTodo = z.object({
   body: z.object({ title: z.string().min(3, "Title too small") }),
 });

@@ -6,8 +6,6 @@ beforeAll(async () => {
   fileStorage = new LocalFileStorage();
 });
 
-afterAll(async () => {});
-
 test("test create notification", async () => {
   try {
     const filePath = `${RandomString(10)}.txt`;

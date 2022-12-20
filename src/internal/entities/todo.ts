@@ -1,3 +1,4 @@
 import { Todos } from "@prisma/client";
 
-export default interface ETodo extends Todos {}
+type ETodo = Todos;
+export default ETodo;
