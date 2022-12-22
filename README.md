@@ -1,23 +1,12 @@
-# PERT Setup
+# Prisma, Express, Typescript Starter
 
-## Run Locally
+- Express for API
+- Zod for validation
+- Prisma as ORM
+- Winston(With rotating log file) for logging
+- Sharp for image processing
 
-Must have docker installed and running on the system for the following instructions:
+## Todo
 
-#### Change file permission (if not already changed)
-
-```bash
-  sudo chmod 0755 ./dev
-```
-
-#### Run all the containers
-
-```bash
-  ./dev run
-```
-
-#### To Reset The Containers
-
-```bash
-  ./dev reset
-```
+- [ ] OpenAPI docs
+- [ ] Testing
