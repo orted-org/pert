@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createLogger, transports, Logger as WLogger, format } from "winston";
+import { createLogger, transports, Logger, format } from "winston";
 import path from "path";
 import fs from "fs";
 import "winston-daily-rotate-file";
 
-export class Logger {
-  private static logger: WLogger;
+export default class Logs {
+  private static logger: Logger;
   private static logDirectory = path.join(process.cwd(), "logs");
 
   private static CreateLogFolderIfNotExists() {
@@ -23,7 +23,7 @@ export class Logger {
       transports: [
         new transports.Console(),
         new transports.DailyRotateFile({
-          filename: path.join(Logger.logDirectory, "starter-%DATE%.log"),
+          filename: path.join(Logs.logDirectory, "starter-%DATE%.log"),
           datePattern: "YYYY-MM-DD-HH",
           frequency: "1h",
           maxSize: "1g",
@@ -34,7 +34,7 @@ export class Logger {
     });
   }
 
-  public static configureLogger() {
+  public static ConfigureLogger() {
     this.CreateLogFolderIfNotExists();
     this.SetLogger();
   }
