@@ -1,10 +1,10 @@
+// WIP
 import { ApiDocRegistry } from "../../../docs/zod_openapi.setup";
-import { validateCreateTodo, validateUpdateTodo } from "./validation";
-
-const TodoCreateSchema = ApiDocRegistry.register("Todo", validateCreateTodo);
+import { TodoCreateValidator, TodoUpdateValidator } from "./validation";
+const TodoCreateSchema = ApiDocRegistry.register("Todo", TodoCreateValidator);
 const TodoUpdateSchema = ApiDocRegistry.register(
   "UpdateTodo",
-  validateUpdateTodo
+  TodoUpdateValidator
 );
 export default function RegisterDoc() {
   ApiDocRegistry.registerPath({

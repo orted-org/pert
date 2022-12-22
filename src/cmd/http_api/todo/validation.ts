@@ -1,10 +1,11 @@
 import { z } from "zod";
+import { CreateValidator } from "../app/factory";
 
-export const validateCreateTodo = z.object({
+export const TodoCreateValidator = z.object({
   body: z.object({ title: z.string().min(3, "Title too small") }),
 });
 
-export const validateUpdateTodo = z.object({
+export const TodoUpdateValidator = CreateValidator({
   body: z.object({
     id: z.number({ required_error: "id missing" }),
     title: z.string().min(3, "Title too small.").optional(),
@@ -14,7 +15,7 @@ export const validateUpdateTodo = z.object({
   }),
 });
 
-export const validateDeleteTodo = z.object({
+export const TodoDeleteValidator = z.object({
   query: z.object({
     id: z.string().transform((s) => {
       return Number(s);
