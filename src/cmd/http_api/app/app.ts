@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import cors from "cors";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const xss = require("xss-clean");
+import helmet from "helmet";
 import express, { Response, Router } from "express";
 import { Herror } from "../../../pkg/herror/herror";
 import { HerrorStatus } from "../../../pkg/herror/status_codes";
@@ -39,6 +42,10 @@ export class ApiApp {
       next();
     });
     srv.enable("trust proxy");
+
+    // for api security
+    srv.use(xss());
+    srv.use(helmet());
 
     if (this.config.cors !== null)
       srv.use(
