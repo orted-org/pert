@@ -7,3 +7,4 @@ pgdata
 .idea/
 package-lock.json
 logs/
+*.db
