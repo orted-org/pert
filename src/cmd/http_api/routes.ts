@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { ApiApp } from "./app/app";
-import TodoRoutes from "./todo/routes";
+import { TodoApi } from "./todo/controller";
 
-const ApiRoutes: { [key: string]: (a: ApiApp) => Router } = {
-  "/todo": TodoRoutes,
+const ApiRoutes: { [key: string]: (app: ApiApp) => Router } = {
+  "/todo": TodoApi,
 };
 
 export default ApiRoutes;

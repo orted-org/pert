@@ -4,7 +4,7 @@ import express, { Response, Router } from "express";
 import { Herror } from "../../../pkg/herror/herror";
 import { HerrorStatus } from "../../../pkg/herror/status_codes";
 import { ToJson } from "../../../util/json";
-import { Logger } from "../../../util/logger";
+import Logs from "../../../util/logs";
 import { ApiAppConfig } from "../config";
 import { IAPIDependencies, InitiateDependencies } from "../deps";
 import ApiRoutes from "../routes";
@@ -25,10 +25,10 @@ export class ApiApp {
   Listen() {
     if (this.depsCheck)
       this.srv.listen(this.config.port, () => {
-        Logger.info(`api listening on port ${this.config.port}`);
+        Logs.info(`api listening on port ${this.config.port}`);
       });
     else {
-      Logger.error("dependencies not initialized, call .InitiateDeps() first");
+      Logs.error("dependencies not initialized, call .InitiateDeps() first");
     }
   }
 
