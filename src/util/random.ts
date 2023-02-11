@@ -12,14 +12,4 @@ function RandomNumber(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function GenerateOTP(): string {
-  let otp = "";
-  while (otp.length < 4) {
-    const RandNumber = Math.floor(Math.random() * 10);
-    otp +=
-      RandNumber !== 0 ? RandNumber.toString() : (RandNumber + 1).toString();
-  }
-  return otp;
-}
-
-export { RandomNumber, RandomString, GenerateOTP };
+export { RandomNumber, RandomString };

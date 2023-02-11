@@ -1,8 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import cors from "cors";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const xss = require("xss-clean");
-import helmet from "helmet";
 import express, { Response, Router } from "express";
 import { Herror } from "../../../pkg/herror/herror";
 import { HerrorStatus } from "../../../pkg/herror/status_codes";
@@ -37,24 +34,7 @@ export class ApiApp {
 
   private _initServer() {
     const srv = express();
-    srv.use((req, res, next) => {
-      res.setHeader("X-Powered-By", "Java Spring");
-      next();
-    });
     srv.enable("trust proxy");
-
-    // for api security
-    srv.use(xss());
-    srv.use(helmet());
-
-    if (this.config.cors !== null)
-      srv.use(
-        cors({
-          origin: process.env.REACT_ORIGIN,
-          credentials: true,
-        })
-      );
-
     srv.use(express.json());
     srv.use(express.urlencoded({ extended: true }));
 
@@ -67,7 +47,6 @@ export class ApiApp {
     srv.use((req, res, next) => {
       next(new Herror("not found", HerrorStatus.StatusNotFound));
     });
-
     srv.use((err: any, req: any, res: any) => {
       const status = err.status || err.responseStatus.statusCode || 500;
       const message = err.message || err.responseStatus.message || "error";
@@ -78,7 +57,6 @@ export class ApiApp {
         message: message,
       });
     });
-
     return srv;
   }
 

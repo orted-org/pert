@@ -1,18 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createLogger, transports, Logger, format } from "winston";
-import path from "path";
-import fs from "fs";
-import "winston-daily-rotate-file";
 
 export default class Logs {
   private static logger: Logger;
-  private static logDirectory = path.join(process.cwd(), "logs");
-
-  private static CreateLogFolderIfNotExists() {
-    if (!fs.existsSync(this.logDirectory)) {
-      fs.mkdirSync(this.logDirectory);
-    }
-  }
 
   private static SetLogger() {
     const logFormat = format.printf(({ level, message, timestamp }) => {
@@ -20,22 +10,12 @@ export default class Logs {
     });
     this.logger = createLogger({
       format: format.combine(format.json(), format.timestamp(), logFormat),
-      transports: [
-        new transports.Console(),
-        new transports.DailyRotateFile({
-          filename: path.join(Logs.logDirectory, "starter-%DATE%.log"),
-          datePattern: "YYYY-MM-DD-HH",
-          frequency: "1h",
-          maxSize: "1g",
-          level: "verbose",
-        }),
-      ],
+      transports: [new transports.Console()],
       exitOnError: false,
     });
   }
 
   public static ConfigureLogger() {
-    this.CreateLogFolderIfNotExists();
     this.SetLogger();
   }
 
